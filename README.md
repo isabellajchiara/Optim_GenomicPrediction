@@ -2,7 +2,7 @@
 
 Here you will find the files required to test genomic prediction models RRBLUP, SVM, RF and ANN.
 
-Each runUpdated file contains the steps to simulate one cycle a genomic selection pipeline using the desired model.
+Each Pipeline file contains the steps to simulate one cycle a genomic selection pipeline using the desired model.
 
 The script for each model has a RD(random) version - slecting a random subset of the training population for use in model training - The script for each model has a SC(stratified clustering) version - using stratified clustering to select a subset of the training population.
 
