@@ -6,8 +6,8 @@ library(rrBLUP)
 library(tidyverse)
 
 #establish simulation parameters
-genMap <- readRDS("genMap.Rdata")
-haplotypes <- readRDS("srAlphaHaplo.Rdata")
+genMap <- readRDS("genMapSNPs.Rdata")
+haplotypes <- readRDS("haplotypesSNPs.Rdata")
 
 founderPop = newMapPop(genMap, 
                        haplotypes, 
