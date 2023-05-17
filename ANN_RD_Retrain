@@ -65,8 +65,8 @@ model_fit <- model %>% fit(
 
 early_stop <- callback_early_stopping(monitor="val_loss", mode='min', patience =50)
 
-model_Final <- build_model()
-model_fit_Final <- model_Final%>%fit(
+model_Final2 <- build_model()
+model_fit_Final <- model_Final2%>%fit(
   X, Y,
   shuffle=F,
   epochs = No_Epoch, batch_size=10,
