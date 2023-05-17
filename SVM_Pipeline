@@ -144,7 +144,7 @@ source("SVM_RD_Retrain.R")
 ##set EBV using BLUP model##
 genoF5 <- pullSegSiteGeno(F5)
 colnames(genoF5) <- paste("ID", 2:(ncol(genoF5) +1), sep="")
-EBVF5 = as.numeric(predict(SVMfit,genoF5))
+EBVF5 = as.numeric(predict(SVMfit2,genoF5))
 
 F5@ebv <- as.matrix(EBVF5)
 
@@ -159,7 +159,7 @@ var6 = varG(PYT)
 ##set EBV using BLUP model##
 genoPYT <- pullSegSiteGeno(PYT)
 colnames(genoPYT) <- paste("ID", 2:(ncol(genoPYT) +1), sep="")
-EBVPYT = as.numeric(predict(SVMfit,genoPYT))
+EBVPYT = as.numeric(predict(SVMfit2,genoPYT))
 
 PYT@ebv <- as.matrix(EBVPYT)
 cor5 = cor(gv(PYT),ebv(PYT))
@@ -173,7 +173,7 @@ var7 = varG(AYT)
 ##set EBV using BLUP model##
 genoAYT <- pullSegSiteGeno(AYT)
 colnames(genoAYT) <- paste("ID", 2:(ncol(genoAYT) +1), sep="")
-EBVAYT = as.numeric(predict(SVMfit,genoAYT))
+EBVAYT = as.numeric(predict(SVMfit2,genoAYT))
 
 
 AYT@ebv <- as.matrix(EBVAYT)
