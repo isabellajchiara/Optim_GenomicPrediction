@@ -10,8 +10,8 @@ library(e1071)
 library(randomForest)
 
 #establish simulation parameters
-genMap <- readRDS("genMap.Rdata")
-haplotypes <- readRDS("srnAlphaHaplo.Rdata")
+genMap <- readRDS("genMapSNPs.Rdata")
+haplotypes <- readRDS("haplotypesSNPs.Rdata")
 
 founderPop = newMapPop(genMap, 
                        haplotypes, 
