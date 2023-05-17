@@ -3,8 +3,8 @@ library(AlphaSimR)
 library(e1071)
 
 #establish simulation parameters
-genMap <- readRDS("geneticMap.Rdata")
-haplotypes <- readRDS("srnmAlphaHaplo.Rdata")
+genMap <- readRDS("genMapSNPs.Rdata")
+haplotypes <- readRDS("haplotypesSNPs.Rdata")
 
 founderPop = newMapPop(genMap, 
                        haplotypes, 
