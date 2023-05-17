@@ -7,6 +7,14 @@ library(BMTME)
 
 ## create GRM ##
 
+## create GRM ##
+geno <- as.matrix(TrainingGeno)
+GM <- tcrossprod(geno)/dim(geno)
+LG <- cholesky(GM)
+
+Y <- as.matrix(TrainingPheno)
+X = LG
+
 X <- as.matrix(TrainingGeno)
 Y <- as.matrix(TrainingPheno)
 
