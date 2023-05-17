@@ -5,8 +5,8 @@ library(AlphaSimR)
 library(rrBLUP)
 
 #establish simulation parameters
-genMap <- readRDS("genMapSNPs.RData")
-haplotypes <- readRDS("haplotypesSNPs.RData")
+genMap <- readRDS("genMapSNPs.Rdata")
+haplotypes <- readRDS("haplotypesSNPs.Rdata")
 
 founderPop = newMapPop(genMap, 
                        haplotypes, 
