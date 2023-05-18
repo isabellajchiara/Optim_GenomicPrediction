@@ -50,7 +50,7 @@ for (i in 1:nclusters) {
   assign(paste0("cluster",i), clustername)
   
   trnname <- paste0("trn",i)
-  trnname <- clustername[sample(0.3*nrow(clustername)),]
+  trnname <- clustername[sample(0.75*nrow(clustername)),]
   datalist[[i]] <- trnname
 
   i = i + 1
