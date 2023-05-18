@@ -16,15 +16,8 @@ variances <- matrix(nrow=nVar,ncol=nReps)
 i = 1
 repeat{
   source("runUpdated_rrblup_RD_yield_SNP.R") ##Source the SCript for the SCenario you would like to run##
-  gvresults[1,i] <- parentsgv
-  gvresults[2,i] <- F1gv
-  gvresults[3,i] <- F2gv
-  gvresults[4,i] <- F3gv
-  gvresults[5,i] <- F4gv
-  gvresults[6,i] <- F5gv
-  gvresults[7,i] <- PYTgv
-  gvresults[8,i] <- AYTgv
-  gvresults[9,i] <- Varietygv
+  
+  geneticvalues[,i <-gvMat
   
   correlations[,i] <- corMat
   
