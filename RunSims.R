@@ -53,16 +53,9 @@ repeat{
   
   
   ##write files
-  write.csv(geneticvalues, "rrblup_RD_Allgvs_SNP_yield.csv")
-  write.csv(correlations, "rrblup_RD_Cors_SNP_yield.csv")
-  write.csv(variances,"rrblup_RD_Vars_SNP_yield.csv")
-  
-  sink("rrblup_RD_Alleles_SNP_yield.csv", type="output")
-  invisible(lapply(names(alleles), 
-                   function(x) { print(x)
-                     dput(write.csv(alleles[[x]])) } ))
-  sink()
-
+  write.csv(geneticvalues, "rrblup_rd_gvs_snp_yield.csv")
+  write.csv(correlations, "rrblup_rd_cors_snp_yield.csv")
+  write.csv(variances,"rrblup_rd_vars_snp_yield.csv")
+  saveRDS(alleles, file="rrblup_rd_alleles_snp_yield.rds")
   
 }
-
