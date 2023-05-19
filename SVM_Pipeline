@@ -80,7 +80,7 @@ colnames(genoPYT) <- paste("ID", 2:(ncol(genoPYT) +1), sep="")
 EBVPYT = as.numeric(predict(SVMfit,genoPYT))
 
 PYT@ebv <- as.matrix(EBVPYT)
-corMat[1,] = cor(gv(PYT), ebv(PYT))
+corMat[1,] = cor(bv(PYT), ebv(PYT))
 
 newParents = selectInd(PYT, 10, use="ebv", top=TRUE)
 varMat[2,] = varG(newParents)
@@ -115,7 +115,7 @@ colnames(genoF2) <- paste("ID", 2:(ncol(genoF2) +1), sep="")
 EBVF2 = as.numeric(predict(SVMfit,genoF2))
 
 F2@ebv <- as.matrix(EBVF2)
-corMat[2] = cor(gv(F2), ebv(F2))
+corMat[2] = cor(bv(F2), ebv(F2))
 
 ## select top individuals from F2 bulk  to form F3 ##
 
@@ -138,7 +138,7 @@ colnames(genoF3) <- paste("ID", 2:(ncol(genoF3) +1), sep="")
 EBVF3 = as.numeric(predict(SVMfit,genoF3))
 
 F3@ebv <- as.matrix(EBVF3)
-corMat[3,] = cor(gv(F3),ebv(F3))
+corMat[3,] = cor(bv(F3),ebv(F3))
 
 
 ##select top within familiy from F3 to form F4 ##
@@ -162,7 +162,7 @@ colnames(genoF4) <- paste("ID", 2:(ncol(genoF4) +1), sep="")
 EBVF4 = as.numeric(predict(SVMfit,genoF4))
 
 F4@ebv <- as.matrix(EBVF4)
-corMat[4,] = cor(gv(F4),ebv(F4))
+corMat[4,] = cor(bv(F4),ebv(F4))
 
 ## select top families from F4 to form F5 ##
 
@@ -188,7 +188,7 @@ colnames(genoF5) <- paste("ID", 2:(ncol(genoF5) +1), sep="")
 EBVF5 = as.numeric(predict(SVMfit2,genoF5))
 
 F5@ebv <- as.matrix(EBVF5)
-corMat[5,] = cor(gv(F5),ebv(F5))
+corMat[5,] = cor(bv(F5),ebv(F5))
 
 ## select top F5 families for preliminary yield trial ##
 
@@ -208,7 +208,7 @@ colnames(genoPYT) <- paste("ID", 2:(ncol(genoPYT) +1), sep="")
 EBVPYT = as.numeric(predict(SVMfit2,genoPYT))
 
 PYT@ebv <- as.matrix(EBVPYT)
-corMat[6,] = cor(gv(PYT),ebv(PYT))
+corMat[6,] = cor(bv(PYT),ebv(PYT))
 
 ## select top families from PYT for AYT ##
 
@@ -228,7 +228,7 @@ colnames(genoAYT) <- paste("ID", 2:(ncol(genoAYT) +1), sep="")
 EBVAYT = as.numeric(predict(SVMfit2,genoAYT))
 
 AYT@ebv <- as.matrix(EBVAYT)
-corMat[7,] = cor(gv(AYT),ebv(AYT))
+corMat[7,] = cor(bv(AYT),ebv(AYT))
 
 
 ## select top plants to form variety ##
@@ -244,5 +244,53 @@ allelesMatVar <- cbind(Gen, allelesMatVar)
 
 allelesMat <- rbind(allelesMatNP, allelesMatF1, allelesMatF2, allelesMatF3, allelesMatF4, allelesMatF5, allelesMatPYT, allelesMatAYT, allelesMatVar)
 
+###collect bvs and ebvs###
+
+bvebv <- cbind(bv(newParents), ebv(newParents))
+Gen <- as.data.frame(rep("NP", times=nInd(newParents)))
+colnames(Gen) <- "Gen"
+bvebv <- cbind(Gen, bvebv)
+
+bvebv1 <- cbind(bv(F2), ebv(F2))
+Gen <- as.data.frame(rep("F2", times=nInd(F2)))
+colnames(Gen) <- "Gen"
+bvebv1 <- cbind(Gen, bvebv1)
+
+bvebv2 <- cbind(bv(F3), ebv(F3))
+Gen <- as.data.frame(rep("F3", times=nInd(F3)))
+colnames(Gen) <- "Gen"
+bvebv2 <- cbind(Gen, bvebv2)
+
+bvebv3 <- cbind(bv(F4), ebv(F4))
+Gen <- as.data.frame(rep("F4", times=nInd(F4)))
+colnames(Gen) <- "Gen"
+bvebv3 <- cbind(Gen, bvebv3)
+
+bvebv4 <- cbind(bv(F5), ebv(F5))
+Gen <- as.data.frame(rep("F5", times=nInd(F5)))
+colnames(Gen) <- "Gen"
+bvebv4 <- cbind(Gen, bvebv4)
+
+bvebv5 <- cbind(bv(PYT), ebv(PYT))
+Gen <- as.data.frame(rep("PYT", times=nInd(PYT)))
+colnames(Gen) <- "Gen"
+bvebv5 <- cbind(Gen, bvebv5)
+
+bvebv6 <- cbind(bv(AYT), ebv(AYT))
+Gen <- as.data.frame(rep("AYT", times=nInd(AYT)))
+colnames(Gen) <- "Gen"
+bvebv6 <- cbind(Gen, bvebv6)
+
+
+bv_ebv <- rbind(bvebv,bvebv1,bvebv2,bvebv3,bvebv4,bvebv5,bvebv6)
+
+
+
+
+
+
+
+
+#write files - naming convention: "model_trainingSet_descriptor_populationType_trait.csv"
 
 #write files - naming convention: "model_trainingSet_descriptor_populationType_trait.csv"
