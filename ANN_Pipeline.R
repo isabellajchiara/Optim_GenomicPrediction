@@ -81,7 +81,7 @@ PYTgeno <- as.matrix(pullSegSiteGeno(PYT))
 prediction = model_Final %>% predict(PYTgeno)
 
 PYT@ebv <- prediction
-corMat[1,] = cor(gv(PYT), ebv(PYT))
+corMat[1,] = cor(bv(PYT), ebv(PYT))
 
 newParents = selectInd(PYT, 10, use="ebv", top=TRUE)
 varMat[2,] = varG(newParents)
@@ -120,7 +120,7 @@ allelesMatF2 <- cbind(Gen, allelesMatF2)
 F2geno <- as.matrix(pullSegSiteGeno(F2))
 prediction = model_Final %>% predict(F2geno)
 F2@ebv <- prediction
-corMat[2] = cor(gv(F2), ebv(F2))
+corMat[2] = cor(bv(F2), ebv(F2))
 
 ## select top individuals from F2 bulk  to form F3 ##
 
@@ -142,7 +142,7 @@ allelesMatF3 <- cbind(Gen, allelesMatF3)
 F3geno <- as.matrix(pullSegSiteGeno(F3))
 prediction = model_Final %>% predict(F3geno)
 F3@ebv <- prediction
-corMat[3] = cor(gv(F3), ebv(F3))
+corMat[3] = cor(bv(F3), ebv(F3))
 
 
 ##select top within familiy from F3 to form F4 ##
@@ -166,7 +166,7 @@ F4geno <- as.matrix(pullSegSiteGeno(F4))
 prediction = model_Final %>% predict(F4geno)
 
 F4@ebv <- prediction
-corMat[4,] = cor(gv(F4),ebv(F4))
+corMat[4,] = cor(bv(F4),ebv(F4))
 
 
 ## select top families from F4 to form F5 ##
@@ -193,7 +193,7 @@ F5geno <- as.matrix(pullSegSiteGeno(F5))
 prediction = model_Final2 %>% predict(F5geno)
 
 F5@ebv <- prediction
-corMat[5,] = cor(gv(F5),ebv(F5))
+corMat[5,] = cor(bv(F5),ebv(F5))
 
 
 ## select top F5 families for preliminary yield trial ##
@@ -212,7 +212,7 @@ allelesMatPYT <- cbind(Gen, allelesMatPYT)
 PYTgeno <- as.matrix(pullSegSiteGeno(PYT))
 prediction = model_Final2 %>% predict(PYTgeno)
 PYT@ebv <- prediction
-corMat[6,] = cor(gv(PYT),ebv(PYT))
+corMat[6,] = cor(bv(PYT),ebv(PYT))
 
 
 ## select top families from PYT for AYT ##
@@ -249,3 +249,48 @@ colnames(Gen) <- "Gen"
 allelesMatVar <- cbind(Gen, allelesMatVar)
 
 allelesMat <- rbind(allelesMatNP, allelesMatF1, allelesMatF2, allelesMatF3, allelesMatF4, allelesMatF5, allelesMatPYT, allelesMatAYT, 
+###collect bvs and ebvs###
+
+bvebv <- cbind(bv(newParents), ebv(newParents))
+Gen <- as.data.frame(rep("NP", times=nInd(newParents)))
+colnames(Gen) <- "Gen"
+bvebv <- cbind(Gen, bvebv)
+
+bvebv1 <- cbind(bv(F2), ebv(F2))
+Gen <- as.data.frame(rep("F2", times=nInd(F2)))
+colnames(Gen) <- "Gen"
+bvebv1 <- cbind(Gen, bvebv1)
+
+bvebv2 <- cbind(bv(F3), ebv(F3))
+Gen <- as.data.frame(rep("F3", times=nInd(F3)))
+colnames(Gen) <- "Gen"
+bvebv2 <- cbind(Gen, bvebv2)
+
+bvebv3 <- cbind(bv(F4), ebv(F4))
+Gen <- as.data.frame(rep("F4", times=nInd(F4)))
+colnames(Gen) <- "Gen"
+bvebv3 <- cbind(Gen, bvebv3)
+
+bvebv4 <- cbind(bv(F5), ebv(F5))
+Gen <- as.data.frame(rep("F5", times=nInd(F5)))
+colnames(Gen) <- "Gen"
+bvebv4 <- cbind(Gen, bvebv4)
+
+bvebv5 <- cbind(bv(PYT), ebv(PYT))
+Gen <- as.data.frame(rep("PYT", times=nInd(PYT)))
+colnames(Gen) <- "Gen"
+bvebv5 <- cbind(Gen, bvebv5)
+
+bvebv6 <- cbind(bv(AYT), ebv(AYT))
+Gen <- as.data.frame(rep("AYT", times=nInd(AYT)))
+colnames(Gen) <- "Gen"
+bvebv6 <- cbind(Gen, bvebv6)
+
+
+bv_ebv <- rbind(bvebv,bvebv1,bvebv2,bvebv3,bvebv4,bvebv5,bvebv6)
+
+
+
+
+
+#write files - naming convention: "model_trainingSet_descriptor_populationType_trait.csv"
