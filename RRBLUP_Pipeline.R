@@ -263,41 +263,41 @@ allelesMat <- rbind(allelesMatNP, allelesMatF1, allelesMatF2, allelesMatF3, alle
 
 bvebv <- cbind(bv(newParents), ebv(newParents))
 Gen <- as.data.frame(rep("NP", times=nInd(newParents)))
-colnames(Gen) <- "Gen"
 bvebv <- cbind(Gen, bvebv)
+colnames(bvebv) <- c("Gen","bv","ebv")
 
 bvebv1 <- cbind(bv(F2), ebv(F2))
 Gen <- as.data.frame(rep("F2", times=nInd(F2)))
-colnames(Gen) <- "Gen"
 bvebv1 <- cbind(Gen, bvebv1)
+colnames(bvebv1) <- c("Gen","bv","ebv")
 
 bvebv2 <- cbind(bv(F3), ebv(F3))
 Gen <- as.data.frame(rep("F3", times=nInd(F3)))
-colnames(Gen) <- "Gen"
 bvebv2 <- cbind(Gen, bvebv2)
+colnames(bvebv2) <- c("Gen","bv","ebv")
 
 bvebv3 <- cbind(bv(F4), ebv(F4))
 Gen <- as.data.frame(rep("F4", times=nInd(F4)))
-colnames(Gen) <- "Gen"
 bvebv3 <- cbind(Gen, bvebv3)
+colnames(bvebv3) <- c("Gen","bv","ebv")
 
 bvebv4 <- cbind(bv(F5), ebv(F5))
 Gen <- as.data.frame(rep("F5", times=nInd(F5)))
-colnames(Gen) <- "Gen"
 bvebv4 <- cbind(Gen, bvebv4)
+colnames(bvebv4) <- c("Gen","bv","ebv")
 
 bvebv5 <- cbind(bv(PYT), ebv(PYT))
 Gen <- as.data.frame(rep("PYT", times=nInd(PYT)))
-colnames(Gen) <- "Gen"
 bvebv5 <- cbind(Gen, bvebv5)
+colnames(bvebv5) <- c("Gen","bv","ebv")
 
 bvebv6 <- cbind(bv(AYT), ebv(AYT))
 Gen <- as.data.frame(rep("AYT", times=nInd(AYT)))
-colnames(Gen) <- "Gen"
 bvebv6 <- cbind(Gen, bvebv6)
+colnames(bvebv6) <- c("Gen","bv","ebv")
 
 
-bv_ebv <- rbind(bvebv,bvebv1,bvebv2,bvebv3,bvebv4,bvebv5,bvebv6)
+bv_ebv <- as.data.frame(rbind(bvebv,bvebv1,bvebv2,bvebv3,bvebv4,bvebv5,bvebv6))
 
 
 
